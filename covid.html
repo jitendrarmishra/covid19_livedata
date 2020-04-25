@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 India Live Data</title>
+ 
+    
+</head>
+<body>
+   
+
+    <script>
+        
+            var countriesName = document.getElementById("countryName");
+            var totalConfirm = document.getElementById("TotalConfirmed");
+            var totalDeath = document.getElementById("TotalDeaths");
+            var rotalRecover = document.getElementById("TotalRecoverd");
+            var NewConfirmed = document.getElementById("NewConfirmed");
+
+
+            fetch("https://api.covid19india.org/v2/state_district_wise.json")
+            .then(res => res.json() ) 
+            .then((data) => {
+            // console.log(data)
+                let stateNameList;
+                let districtNameList;
+                
+                data.forEach((stateName, index) => {
+                   // console.log(stateName.state)
+                   document.write("<h4>"+stateName.state+"</h4>")
+                   let districtNameList = stateName.districtData
+                    districtNameList.forEach((dis, index) => {
+                       // console.log(dis.district)
+                       document.write("<h5>"+dis.district+"</h5>")
+                       document.write("<p>Active : "+dis.active+"</p>")
+                       document.write("<p>Confirmed : "+dis.confirmed+"</p>")
+                       document.write("<p>Deceased : "+dis.deceased+"</p>")
+                       document.write("<p>Recovered : "+dis.recovered+"</p>")
+                    });
+                  
+                                  
+                   
+                });
+               
+                
+            }); 
+
+           
+            request.send();        
+            
+    </script>
+</body>
+</html>
